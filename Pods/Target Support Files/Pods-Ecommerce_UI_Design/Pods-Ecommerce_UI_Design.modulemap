@@ -1,0 +1,6 @@
+framework module Pods_Ecommerce_UI_Design {
+  umbrella header "Pods-Ecommerce_UI_Design-umbrella.h"
+
+  export *
+  module * { export * }
+}

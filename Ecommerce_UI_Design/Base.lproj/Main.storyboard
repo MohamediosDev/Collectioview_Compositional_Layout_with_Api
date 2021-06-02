@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8dn-T9-o98">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Ecommerce-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Ecommerce_UI_Design" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="What do you want to day" translatesAutoresizingMaskIntoConstraints="NO" id="QAk-0w-JLK">
+                                <rect key="frame" x="5" y="93" width="404" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="36j-ne-suU">
+                                <rect key="frame" x="0.0" y="154" width="414" height="708"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewLayout key="collectionViewLayout" id="stD-gQ-Vfg"/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="Ofs-Rn-Eue" customClass="cell" customModule="Ecommerce_UI_Design" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="148" height="144"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ag9-7L-Hwa">
+                                            <rect key="frame" x="0.0" y="0.0" width="148" height="144"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Pp-jI-fBE">
+                                                    <rect key="frame" x="0.0" y="0.0" width="148" height="144"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="3Pp-jI-fBE" firstAttribute="top" secondItem="ag9-7L-Hwa" secondAttribute="top" id="CV2-sC-fjl"/>
+                                                <constraint firstAttribute="trailing" secondItem="3Pp-jI-fBE" secondAttribute="trailing" id="QH7-7R-nGC"/>
+                                                <constraint firstAttribute="bottom" secondItem="3Pp-jI-fBE" secondAttribute="bottom" id="gu9-uh-3OR"/>
+                                                <constraint firstItem="3Pp-jI-fBE" firstAttribute="leading" secondItem="ag9-7L-Hwa" secondAttribute="leading" id="v4x-Vj-ndd"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="148" height="144"/>
+                                        <connections>
+                                            <outlet property="imageViewShow" destination="3Pp-jI-fBE" id="Ezt-Wv-7vK"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="36j-ne-suU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="XI2-o2-cKz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="36j-ne-suU" secondAttribute="bottom" id="hJq-3t-bPT"/>
+                            <constraint firstItem="QAk-0w-JLK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="jbf-0o-7x7"/>
+                            <constraint firstItem="36j-ne-suU" firstAttribute="top" secondItem="QAk-0w-JLK" secondAttribute="bottom" constant="5" id="op4-LW-N6j"/>
+                            <constraint firstItem="QAk-0w-JLK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="5" id="pa9-qb-dF7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QAk-0w-JLK" secondAttribute="trailing" constant="5" id="sCs-Kz-YOq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="36j-ne-suU" secondAttribute="trailing" id="ykz-kw-qR4"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Ecommerce" id="teo-cH-l57">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="list.dash" catalog="system" id="s5s-ca-05s">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="sideMenuButton:" destination="BYZ-38-t0r" id="Kv3-aE-8Au"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="person.crop.circle.fill" catalog="system" id="69s-4l-krX">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="36j-ne-suU" id="4ol-Ns-KWg"/>
+                        <outlet property="searchBar" destination="QAk-0w-JLK" id="aRz-QT-utw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1189.8550724637682" y="71.651785714285708"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="6GB-fH-2kX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8dn-T9-o98" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SYL-cL-dyi">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="SavoyeLetPlain" family="Savoye LET" pointSize="41"/>
+                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="2"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="40z-BD-Syp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wzv-RJ-l8I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="279.71014492753625" y="71.651785714285708"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="list.dash" catalog="system" width="128" height="85"/>
+        <image name="person.crop.circle.fill" catalog="system" width="128" height="121"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
