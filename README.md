@@ -1,6 +1,7 @@
 # Ecommerce_UI_Design
  CollectioView Compositional Layout
  
- <centre>![Alt Text](https://im7.ezgif.com/tmp/ezgif-7-1f82a888f970.gif)</center>
+ <centre>![ezgif com-gif-maker](https://user-images.githubusercontent.com/66757978/120630834-7e9fa780-c467-11eb-81e3-c0d5c69570bd.gif
+)</center>
 
 
