@@ -8,6 +8,7 @@
 import UIKit
 import Alamofire
 import SideMenu
+import NVActivityIndicatorView
 
 
 class ViewController: UIViewController {
@@ -26,12 +27,10 @@ class ViewController: UIViewController {
     //MARK: -> Properties
     
     var homeModel:HomeModel?
-    var menu:SideMenuNavigationController?
-    var timer:Timer?
+    var menu: SideMenuNavigationController?
+    var timer: Timer?
     var currentCellIndex = 0
-    
-    
-    
+    let loading = NVActivityIndicatorView(frame: .zero, type: .ballScaleRippleMultiple, color: .black, padding: 0)
     
     //MARK: -> View life cycle
     
@@ -39,23 +38,51 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         collectionView.collectionViewLayout = createcompositionalLayout()
         setupSideMenu()
-        //startTimer()
-        
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        animateIndicator()
+        DispatchQueue.main.async { [weak self] in
+            self?.startTimer()
+        }
         getHomedetail()
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    
     //MARK: -> Class Methods
-//    func startTimer() {
-//        timer = Timer(timeInterval: 1.5, target: self, selector: #selector(moveToNextIndex), userInfo: nil, repeats: true)
-//    }
-//    @objc func moveToNextIndex() {
-//        currentCellIndex += 1
-//        collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: true)
-//    }
-
+    
+    fileprivate func animateIndicator() {
+        loading.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(loading)
+        NSLayoutConstraint.activate([
+            loading.widthAnchor.constraint(equalToConstant: 40),
+            loading.heightAnchor.constraint(equalToConstant: 40),
+            loading.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loading.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
+    
+    func startTimer() {
+        
+        timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+    }
+    @objc func timerAction() {
+        
+        if currentCellIndex < homeModel?.data?.banners?.count ?? 0 {
+            
+            collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: true)
+            currentCellIndex += 1
+        }
+        else {
+            
+            collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: true)
+            currentCellIndex = 0
+        }
+    }
+    
+    
     func createcompositionalLayout() -> UICollectionViewCompositionalLayout {
         
         let layout = UICollectionViewCompositionalLayout { [weak self](index, enviroment) -> NSCollectionLayoutSection? in
@@ -80,6 +107,7 @@ class ViewController: UIViewController {
     }
     
     func createFirstSection() -> NSCollectionLayoutSection {
+        
         let inset: CGFloat = 2.5
         
         //Item
@@ -159,7 +187,9 @@ class ViewController: UIViewController {
     //Network
     func getHomedetail() {
         
+        loading.startAnimating()
         let url = "https://student.valuxapps.com/api/home"
+        
         let headers:HTTPHeaders = ["lang": "ar", "Content-Type": "application/json", "Authorization":"T4KLEXAMOsnPGoPmcUq3KauJ8uu58sULQ7JJEWbjGYfLY5v3SThsBDMshdr1CiPHz6Mlog"]
         
         ApiService.Shared.fetchData(url: url, parms: nil  , headers: headers, method:.get) { [weak self](getBook:HomeModel?, failBook:HomeModel?, error) in
@@ -167,11 +197,16 @@ class ViewController: UIViewController {
             guard let self = self else {return}
             if let error = error {
                 print(error.localizedDescription)
+                self.loading.stopAnimating()
+                
             }
-            
             else {
                 self.homeModel = getBook
+                
                 self.collectionView.reloadData()
+                self.loading.stopAnimating()
+                
+                
                 
             }
         }
@@ -188,8 +223,6 @@ class ViewController: UIViewController {
     
     @IBAction func sideMenuButton(_ sender: Any) {
         present(menu!, animated: true)
-        
-        
     }
     
     
@@ -198,11 +231,12 @@ class ViewController: UIViewController {
 
 //MARK: -> Extension
 
-extension ViewController : UICollectionViewDataSource {
+extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
@@ -215,6 +249,7 @@ extension ViewController : UICollectionViewDataSource {
             return 19
         }
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -252,5 +287,9 @@ extension ViewController : UICollectionViewDataSource {
         
         view.title = indexPath.section == 1 ? "Browse By Catogery" : "Recent Proudcts"
         return view
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        currentCellIndex = Int(scrollView.contentOffset.x / collectionView.frame.size.width)
     }
 }

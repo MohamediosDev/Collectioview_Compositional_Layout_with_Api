@@ -9,6 +9,8 @@ target 'Ecommerce_UI_Design' do
   pod 'Alamofire'
   pod 'Kingfisher', '~> 5.0'
   pod 'SideMenu'
+  pod 'NVActivityIndicatorView'
+
 
   
 

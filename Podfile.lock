@@ -3,24 +3,30 @@ PODS:
   - Kingfisher (5.15.8):
     - Kingfisher/Core (= 5.15.8)
   - Kingfisher/Core (5.15.8)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
   - SideMenu (6.5.0)
 
 DEPENDENCIES:
   - Alamofire
   - Kingfisher (~> 5.0)
+  - NVActivityIndicatorView
   - SideMenu
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - Kingfisher
+    - NVActivityIndicatorView
     - SideMenu
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
 
-PODFILE CHECKSUM: cbf92be87f77778b4d0deb7c22d52a90de6c45f3
+PODFILE CHECKSUM: d2f1b8723d6accd4d1761eef57ed0797ec15161c
 
 COCOAPODS: 1.8.4
